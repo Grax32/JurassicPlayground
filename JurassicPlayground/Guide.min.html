@@ -1,0 +1,10 @@
+<h1>JavaScript Testing in MS Unit Tests</h1><hr><p>Web-based projects usually have a lot of JavaScript code. By unit-testing your JavaScript, you can ensure that it performs as you intend.</p><p>Set "Default project" to target your unit tests</p><p><code>install-package jurassic</code></p><h3>Link JavaScript file to test into testing project</h3><ul><li>Use Add / Existing Item</li><li>Navigate to JavaScript file in web project</li><li>Change the "Add" dropdown to "Add As Link"</li></ul><h3>Decorate test class with DeploymentItem attribute</h3><p><code>[DeploymentItem(@".\Scripts\", "Scripts")]</code></p><h2>Create new Unit Test file</h2><h3>Create script engine in C#</h3><pre><code>var engine = new ScriptEngine
+{
+    EnableDebugging = true
+};
+</code></pre><h3>Create necessary fakes to execute JavaScript file to test</h3><pre><code>engine.Execute(@"
+    var jQueryFunctions = [];
+    var jQuery = function() { return jQueryFunctions; };
+    var $ = jQuery;
+");
+</code></pre><h3>Create new unit test</h3><p>Create code to</p><ul><li>arrange (arrange your test),</li><li>act (perform the tested action),</li><li>assert (assert that the correct result is returned or the expected action happens)</li></ul><p>As part of the arrange, create JavaScript fakes to satisfy dependencies of the JavaScript function you are testing</p><p>Assert that expected result is returned or the expected action occurs</p>

@@ -1,0 +1,25 @@
+<h1>Creating scriptable applications with Jurassic</h1><hr><h2>Install Jurassic</h2><p><a href="https://jurassic.codeplex.com/">Source Code and Documentation: https://jurassic.codeplex.com/</a></p><p><code>install-package jurassic</code></p><h2>Call a JavaScript from C#</h2><h3>Set Build Action on JavaScript files to "Content" and "Copy Always"</h3><h3>Create script engine in C#</h3><pre><code>var engine = new ScriptEngine
+{
+    EnableDebugging = true // do not enable in production
+};
+
+engine.ExecuteFile("Scripts/ScriptMe.js");
+engine.Execute(@"
+    var name = 'George';
+    SayHello(name);
+")
+</code></pre><h2>Call a C# function from JavaScript</h2><ul><li>Inherit from ObjectInstance</li><li>Pass a ScriptEngine object to the constructor</li><li>Decorate functions to call with [JSFunction]</li><li>Call PopulateFunctions when creating new instance</li><li>Call <code>engine.SetGlobalValue("ScriptMe", scriptMe);</code> to create global variable that will be accessible in JavaScript</li></ul><h2>Return a C# object to JavaScript</h2><ul><li>Two Classes, Class to return and Constructor class</li><li>I have nested them in my demo. The documentation shows them as 2 distinct classes</li><li><p>Constructor class</p><ul><li>inherits from ClrFunction</li><li>contains one method called Construct and decorated with <code>[JSConstructorFunction]</code></li><li>Construct method accepts the parameters that will be passed to the instance constructor</li></ul></li><li><p>Instance class</p><ul><li>inherits from ObjectInstance</li><li>has two constructors, one for "setup" and one for creating a new instance</li><li>calls PopulateFunctions in the "setup" constructor</li><li>Processes passed-in parameters in the "instance" constructor</li></ul></li></ul><h2>Create an MS Unit Test</h2><h3>Link JavaScript file to test into testing project</h3><ul><li>Use Add / Existing Item</li><li>Navigate to JavaScript file in web project</li><li>Change the "Add" dropdown to "Add As Link"</li></ul><h2>Fakes in JavaScript</h2><h3>Two things to be faked. Objects and functions</h3><h4>Object fake</h4><pre><code>var ObjectFake = []
+</code></pre><p>Now you can read any property on ObjectFake by calling</p><pre><code>var result = ObjectFake.AnyProperty
+</code></pre><p>and it will returned undefined You can set any property on ObjectFake by doing something like</p><pre><code>ObjectFake.AnyProperty = 47;
+</code></pre><h3>Function fake</h3><pre><code>function ConvertDateString() {} // returns undefined
+
+function $() {} // $ is just another function name
+
+ObjectFake.UpdateObject = function () {}
+
+ObjectFake.GetDescription = function () { return "Something"; }
+</code></pre><h3>Mix and Match</h3><pre><code>var jQueryObject = [];
+jQueryObject.find = function () { return true; }
+var $ = function () { return jQueryObject; }
+</code></pre><p>called with</p><pre><code>var result = $(anything, anything).find(anything);
+</code></pre>
