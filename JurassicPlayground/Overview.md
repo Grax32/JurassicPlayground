@@ -5,6 +5,10 @@
 ####CodePlex: https://ffastinjector.codeplex.com/
 
 ---
+## What is Jurassic?
+
+Jurassic is an implementation of the ECMAScript language and runtime. It aims to provide the best performing and most standards-compliant implementation of JavaScript for .NET. Jurassic is not intended for end-users; instead it is intended to be integrated into .NET programs. If you are the author of a .NET program, you can use Jurassic to compile and execute JavaScript code.
+
 ## Install Jurassic
 
 [Source Code and Documentation: https://jurassic.codeplex.com/](https://jurassic.codeplex.com/)
