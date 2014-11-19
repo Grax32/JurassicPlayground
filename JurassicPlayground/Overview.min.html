@@ -1,4 +1,4 @@
-<h1>Creating scriptable applications with Jurassic</h1><hr><h2>Install Jurassic</h2><p><a href="https://jurassic.codeplex.com/">Source Code and Documentation: https://jurassic.codeplex.com/</a></p><p><code>install-package jurassic</code></p><h2>Call a JavaScript from C#</h2><h3>Set Build Action on JavaScript files to "Content" and "Copy Always"</h3><h3>Create script engine in C#</h3><pre><code>var engine = new ScriptEngine
+<h1>Creating scriptable applications with Jurassic</h1><h4>Twitter: @grax</h4><h4>Web: http://grax.com/</h4><h4>GitHub: https://github.com/Grax32/</h4><h4>CodePlex: https://ffastinjector.codeplex.com/</h4><hr><h2>Install Jurassic</h2><p><a href="https://jurassic.codeplex.com/">Source Code and Documentation: https://jurassic.codeplex.com/</a></p><p><code>install-package jurassic</code></p><h2>Call a JavaScript from C#</h2><h3>Set Build Action on JavaScript files to "Content" and "Copy Always"</h3><h3>Create script engine in C#</h3><pre><code>var engine = new ScriptEngine
 {
     EnableDebugging = true // do not enable in production
 };
@@ -17,7 +17,9 @@ function $() {} // $ is just another function name
 
 ObjectFake.UpdateObject = function () {}
 
-ObjectFake.GetDescription = function () { return "Something"; }
+ObjectFake.GetDescription = function () {
+    return "Something"; 
+}
 </code></pre><h3>Mix and Match</h3><pre><code>var jQueryObject = [];
 jQueryObject.find = function () { return true; }
 var $ = function () { return jQueryObject; }

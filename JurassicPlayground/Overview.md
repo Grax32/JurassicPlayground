@@ -1,4 +1,8 @@
 ﻿# Creating scriptable applications with Jurassic
+####Twitter: @grax
+####Web: http://grax.com/ 
+####GitHub: https://github.com/Grax32/
+####CodePlex: https://ffastinjector.codeplex.com/
 
 ---
 ## Install Jurassic
@@ -78,7 +82,9 @@ You can set any property on ObjectFake by doing something like
 
     ObjectFake.UpdateObject = function () {}
 
-    ObjectFake.GetDescription = function () { return "Something"; }
+    ObjectFake.GetDescription = function () {
+        return "Something"; 
+    }
 
 ###Mix and Match
 
